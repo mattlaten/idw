@@ -13,12 +13,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {
@@ -133,10 +129,17 @@ public class MainActivity extends FragmentActivity implements
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
-			Fragment fragment = new DummySectionFragment();
+			Fragment fragment;
+			switch (position) {
+			case 0:
+				fragment = new LibraryFragment();
+			default:
+				fragment = new TitledFragment();
+			}
+			
 			Bundle args = new Bundle();
-			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
-			args.putString(DummySectionFragment.ARG_TITLE, (String) getPageTitle(position));
+			args.putInt(TitledFragment.ARG_SECTION_NUMBER, position + 1);
+			args.putString(TitledFragment.ARG_TITLE, (String) getPageTitle(position));
 			fragment.setArguments(args);
 			return fragment;
 		}
@@ -165,34 +168,6 @@ public class MainActivity extends FragmentActivity implements
 				return getString(R.string.title_section6).toUpperCase(l);
 			}
 			return null;
-		}
-	}
-
-	/**
-	 * A dummy fragment representing a section of the app, but that simply
-	 * displays dummy text.
-	 */
-	public static class DummySectionFragment extends Fragment {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */
-		public static final String ARG_SECTION_NUMBER = "section_number";
-		public static final String ARG_TITLE = "title";
-
-		public DummySectionFragment() {
-		}
-
-		@Override
-		public View onCreateView(LayoutInflater inflater, ViewGroup container,
-				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_main_dummy,
-					container, false);
-			TextView dummyTextView = (TextView) rootView
-					.findViewById(R.id.section_label);
-			//dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
-			dummyTextView.setText(getArguments().getString(ARG_TITLE));
-			return rootView;
 		}
 	}
 
