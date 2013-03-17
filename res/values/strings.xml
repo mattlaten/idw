@@ -9,5 +9,8 @@
     <string name="title_section4">Store</string>
     <string name="title_section5">Notes</string>
     <string name="title_section6">Clippings</string>
+    <string name="title_activity_reading">ReadingActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 
 </resources>
