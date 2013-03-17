@@ -121,6 +121,7 @@ public class MainActivity extends FragmentActivity implements
 			Fragment fragment = new DummySectionFragment();
 			Bundle args = new Bundle();
 			args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+			args.putString(DummySectionFragment.ARG_TITLE, (String) getPageTitle(position));
 			fragment.setArguments(args);
 			return fragment;
 		}
@@ -128,7 +129,7 @@ public class MainActivity extends FragmentActivity implements
 		@Override
 		public int getCount() {
 			// Show 3 total pages.
-			return 3;
+			return 6;
 		}
 
 		@Override
@@ -141,6 +142,12 @@ public class MainActivity extends FragmentActivity implements
 				return getString(R.string.title_section2).toUpperCase(l);
 			case 2:
 				return getString(R.string.title_section3).toUpperCase(l);
+			case 3:
+				return getString(R.string.title_section4).toUpperCase(l);
+			case 4:
+				return getString(R.string.title_section5).toUpperCase(l);
+			case 5:
+				return getString(R.string.title_section6).toUpperCase(l);
 			}
 			return null;
 		}
@@ -156,6 +163,7 @@ public class MainActivity extends FragmentActivity implements
 		 * fragment.
 		 */
 		public static final String ARG_SECTION_NUMBER = "section_number";
+		public static final String ARG_TITLE = "title";
 
 		public DummySectionFragment() {
 		}
@@ -167,8 +175,8 @@ public class MainActivity extends FragmentActivity implements
 					container, false);
 			TextView dummyTextView = (TextView) rootView
 					.findViewById(R.id.section_label);
-			dummyTextView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
+			//dummyTextView.setText(Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+			dummyTextView.setText(getArguments().getString(ARG_TITLE));
 			return rootView;
 		}
 	}
