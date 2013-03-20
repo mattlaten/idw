@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 public class MainActivity extends FragmentActivity implements
 		ActionBar.TabListener {
 
+	private static final String TAG = "Main";
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
 	 * fragments for each of the sections. We use a
@@ -133,13 +135,31 @@ public class MainActivity extends FragmentActivity implements
 			switch (position) {
 			case 0:
 				fragment = new LibraryFragment();
+				break;
+			case 1:
+				fragment = new FriendsFragment();
+				break;
+			case 2:
+				fragment = new SearchFragment();
+				break;
+			case 3:
+				fragment = new StoreFragment();
+				break;
+			case 4:
+				fragment = new NotesFragment();
+				break;
+			case 5:
+				fragment = new ClippingsFragment();
+				break;
 			default:
-				fragment = new TitledFragment();
+				fragment = new MainFragment();
 			}
 			
+			Log.i(TAG, "Returning new fragment: " + fragment.getClass().getName());
+			
 			Bundle args = new Bundle();
-			args.putInt(TitledFragment.ARG_SECTION_NUMBER, position + 1);
-			args.putString(TitledFragment.ARG_TITLE, (String) getPageTitle(position));
+			args.putInt(MainFragment.ARG_SECTION_NUMBER, position + 1);
+			args.putString(MainFragment.ARG_TITLE, (String) getPageTitle(position));
 			fragment.setArguments(args);
 			return fragment;
 		}
